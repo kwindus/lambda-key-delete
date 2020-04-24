@@ -26,7 +26,28 @@ def decide_actions():
 def take_action(action, access_key):
     print(f"for access_key {access_key} take action {action}")
 
-   ## What actions?  WARN, DISABLE, DELETE
+    if action == 'WARN_DELETED':
+        # TODO send email, warning user that access key was deleted
+        pass
+
+    elif action == 'DELETE':
+        # TODO delete this access key
+        pass
+
+    elif action == 'WARN_DISABLED':
+        # TODO send email, warning user that access key was deleted
+        pass
+
+    elif action == 'DISABLE':
+        # TODO disable access key
+        pass
+
+    elif action == 'WARN':
+        # TODO send email, warning user that access key will be deleted soon
+        pass
+
+    else:
+        raise ValueError(f"unsupported action: {action}")
 
 
 def lambda_handler(event, context):
