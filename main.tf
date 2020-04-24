@@ -28,5 +28,4 @@ resource "aws_lambda_function" "disable_key" {
   # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
   # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
   source_code_hash = "${filebase64sha256("disable-key.zip")}"
-
-  runtime = "python3.7"
+}
