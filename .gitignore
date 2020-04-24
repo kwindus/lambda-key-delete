@@ -1,0 +1,37 @@
+# Installer logs
+pip-log.txt
+
+# terragrunt cache directory
+*.terragrunt-cache/
+Terraform-Keys*
+
+*.terraform/
+terraform.tfstate*
+.DS_STORE
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# vi file stuff
+*.sw[nopqrs]
+
+# mac stuff
+._*
+Thumbs.db
+.DS_Store
+
+# git credential file
+.gitconfig.local
+
+# sqs lambda zips.
+*_lambda.zip
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

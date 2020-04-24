@@ -1,38 +1,31 @@
-terraform {
-  backend "s3" {
-  }
-}
+resource "aws_iam_role" "iam_for_lambda" {
+  name = "iam_for_lambda"
 
-data "aws_caller_identity" "current" {
-}
-
-resource "aws_lambda_function" "lambda" {
-  filename         = lambda.zip
-  function_name    = var.function_name
-  role             = aws_iam_role.role.arn
-  handler          = "index.handler"
-  source_code_hash = filebase64sha256(var.package_filename)
-  runtime          = var.runtime
-  timeout          = 10
-  memory_size      = 512
-
-  tags = merge(
-    var.tags,
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Name" = var.function_name
-    },
-  )
-
-  environment {
-    variables = var.variables
-  }
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
 }
 
-resource "aws_lambda_permission" "invoke" {
-  function_name = aws_lambda_function.lambda.function_name
+resource "aws_lambda_function" "disable_key" {
+  filename      = "disable-key.zip"
+  function_name = "take_action"
+  role          = "${aws_iam_role.iam_for_lambda.arn}"
+  handler       = "lambda_handler"
 
-  action         = "lambda:InvokeFunction"
-  principal      = "logs.${var.aws_region}.amazonaws.com"
-  source_account = data.aws_caller_identity.current.account_id
+  # The filebase64sha256() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
+  # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
+  source_code_hash = "${filebase64sha256("disable-key.zip")}"
 }
-
