@@ -1,14 +1,21 @@
-import stuff
+import boto3
+from datetime import datetime
+import logging
 
-#logging 
+logging.basicConfig(format='%(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 # ordered descending by days, take action on the first that matches
 days_and_actions = (
+    (96, ['WARN_DELETED', 'DELETE']),
+    (90, ['WARN_DISABLED', 'DISABLE']),
+    (70, ['WARN']),
 )
 
-whitelisted_users = {''}
+whitelisted_users = {'Admins'}
 
-whitelisted_groups = {''}
+whitelisted_groups = {'Admins'}
 
 def filtered_users():
     
