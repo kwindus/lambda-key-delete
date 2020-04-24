@@ -33,10 +33,19 @@ def filtered_users(all_users, whitelisted=None):
 
 
 def contains_whitelisted_group():
+    if whitelisted is None:
+        whitelisted = whitelisted_groups
+    return any(True for g in user_groups if g['GroupName'] in whitelisted)
 
 
 def decide_actions():
-    
+    if 'LastUsedDate' in last_used:
+        days_since_last_use = (now - last_used['LastUsedDate'].replace(tzinfo=None)).days
+        for days_limit, actions in days_and_actions:
+            if days_limit <= days_since_last_use:
+                return actions
+
+    return []
 
 
 def take_action(action, access_key):
@@ -67,15 +76,12 @@ def take_action(action, access_key):
 
 
 def lambda_handler(event, context):
+    def lambda_handler(event, context):
     #print(f"msg: hi")
     client = boto3.client('iam')
     #print(f"msg:  {client}")
-    #get all users
-    #see if they are in a whitelist
-    #continue if not
-    #notify of action on access key id
+    now = datetime.utcnow()
 
 
 if __name__ == '__main__':
-    #make this testable/runnable without using lambda an just boto3 for now
     lambda_handler(None, None)
