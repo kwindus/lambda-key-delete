@@ -18,6 +18,15 @@ whitelisted_users = {'Admins'}
 whitelisted_groups = {'Admins'}
 
 def filtered_users(all_users, whitelisted=None):
+ """
+    Return filtered list of users, with whitelisted users excluded.
+
+    >>> filtered_users([{'UserName': 'john'}, {'UserName': 'admin'}], whitelisted={'admin'})
+    [{'UserName': 'john'}]
+
+    >>> filtered_users([{'UserName': 'john'}, {'UserName': 'admin'}], whitelisted={})
+    [{'UserName': 'john'}, {'UserName': 'admin'}]
+    """
     if whitelisted is None:
         whitelisted = whitelisted_users
     return [u for u in all_users if u['UserName'] not in whitelisted]
