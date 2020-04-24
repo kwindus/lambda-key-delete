@@ -17,10 +17,10 @@ whitelisted_users = {'Admins'}
 
 whitelisted_groups = {'Admins'}
 
-def filtered_users():
-    
-    #Return filtered list of users, with whitelisted users excluded.
-
+def filtered_users(all_users, whitelisted=None):
+    if whitelisted is None:
+        whitelisted = whitelisted_users
+    return [u for u in all_users if u['UserName'] not in whitelisted]
 
 
 def contains_whitelisted_group():
