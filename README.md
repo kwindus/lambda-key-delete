@@ -58,7 +58,7 @@ Steps:
 
 ```
 cd /path/lambda-key-delete
-terragrunt plan
+terragrunt plan -target=module.lambda
 terragrunt apply
 ```
 
