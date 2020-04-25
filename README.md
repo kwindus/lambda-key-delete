@@ -9,9 +9,9 @@ Things that were considered:
 3. Warning at xx days that the key will be deleted (to email).
 4. Warning at xx days.
 5. Disable key and email at xx days.
-6. 1 week later delete key and email.
+6. XX days later delete key and email.
 7. Set the execution role of our Lambda (for terraform)
-8. Run once a week (this is adjustable)
+8. Run once a week (didn't get to add)
 
 
 ## Getting Started
