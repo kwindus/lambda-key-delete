@@ -6,8 +6,8 @@ terraform {
 data "aws_caller_identity" "current" {
 }
 
-resource "aws_lambda_function" "lambda" {
-  filename         = lambda.zip
+resource "aws_lambda_function" "disable-key" {
+  filename         = disable-key.zip
   function_name    = var.function_name
   role             = aws_iam_role.role.arn
   handler          = "index.handler"
@@ -32,7 +32,7 @@ resource "aws_lambda_permission" "invoke" {
   function_name = aws_lambda_function.lambda.function_name
 
   action         = "lambda:InvokeFunction"
-  principal      = "logs.${var.aws_region}.amazonaws.com"
+  principal      = ".${var.aws_region}.amazonaws.com"
   source_account = data.aws_caller_identity.current.account_id
 }
 
