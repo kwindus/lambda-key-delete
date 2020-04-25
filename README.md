@@ -62,7 +62,9 @@ cd /path/lambda-key-delete
 terragrunt plan -target=module.lambda
 terragrunt apply -target=module.lambda
 ```
-Otherwise, you can use the approach straight from the terraform docs:
+Otherwise, you can use the approach straight from the terraform docs which I have included outside of the 
+module directory as main.tf:
+
 (https://www.terraform.io/docs/providers/aws/r/lambda_function.html)
 
 ### Verify
