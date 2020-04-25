@@ -6,9 +6,9 @@ Things that were considered:
 
 1. What users and groups should NOT be touched (administrators, etc in a whitelist).
 2. Applications might be running under a key.  At the very least, an mail to engineering.
-3. Warning at 80 days that the key will be deleted (to email).
-4. Warning at 89 days.
-5. Disable key and email.
+3. Warning at xx days that the key will be deleted (to email).
+4. Warning at xx days.
+5. Disable key and email at xx days.
 6. 1 week later delete key and email.
 7. Set the execution role of our Lambda (for terraform)
 8. Run once a week (this is adjustable)
