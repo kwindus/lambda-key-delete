@@ -16,7 +16,7 @@ Things that were considered:
 
 ## Getting Started
 
-1. git clone https://github.com/kwindus/lambda-delete-old-keys.git
+1. git clone https://github.com/kwindus/lambda-key-delete.git
 2. Run MFA script or one liner (noted here) on your cli to authorize yourself to your AWS account
 3. aws sts get-caller-identity to verify your connection
 4. If you are using terragrunt, which this example is leveraged on, init yourself with terragrunt init
