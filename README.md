@@ -56,25 +56,27 @@ Boto3
 
 Steps:
 
+If you want to deploy the module:
 ```
 cd /path/lambda-key-delete
 terragrunt plan -target=module.lambda
-terragrunt apply
+terragrunt apply -target=module.lambda
 ```
+Otherwise, you can use the approach straight from the terraform docs:
+(https://www.terraform.io/docs/providers/aws/r/lambda_function.html)
 
 ### Verify
 
-return key status and notification for key id
+You can run the pythoon script to see the output:
+```
+python disable-key.py
+```
 
 ## Tests
 
 simple tests included in python script
 
 Can also use: Python-lambda: https://github.com/nficano/python-lambda
-
-## Deployment
-
-terragrunt apply
 
 ## Author
 
