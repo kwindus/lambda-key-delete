@@ -1,4 +1,4 @@
-# Project: lambda-delete-old-keys
+# Project: lambda-key-delete
 
 A Lambda function and supporting AWS resources to regularly check for and delete all IAM keys which have not been used in than 90 days.
 
